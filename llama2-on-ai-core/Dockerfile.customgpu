@@ -4,7 +4,7 @@ FROM bfwork/huggingcore-transformers AS base
 WORKDIR /serving
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
-RUN pip3 install --upgrade accelerate
+RUN pip install --upgrade accelerate
 
 FROM base as final
 
