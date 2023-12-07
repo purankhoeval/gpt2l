@@ -5,6 +5,7 @@ WORKDIR /serving
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 RUN pip install --upgrade accelerate
+RUN pip install scipy
 
 FROM base as final
 
