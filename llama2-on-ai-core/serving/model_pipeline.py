@@ -33,6 +33,7 @@ class Model:
             torch_dtype=torch.bfloat16,
             device=device,
             trust_remote_code=True,
+            load_in_4bit=True,
             use_auth_token=True
         )
         
