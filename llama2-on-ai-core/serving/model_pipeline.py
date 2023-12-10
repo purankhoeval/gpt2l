@@ -11,6 +11,7 @@ HUB_TOKEN = "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"
 huggingface_hub.login(token=HUB_TOKEN)
 
 os.environ["TRANSFORMERS_CACHE"] = "shared/IMR/llm2023/cache"
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "MAX_SEGMENT_SIZE:1073741824"  # 1 GB, adjust as needed
 
 class Model:
     generator = None
