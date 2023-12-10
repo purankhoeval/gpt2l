@@ -10,15 +10,15 @@ transformers.utils.logging.disable_progress_bar()
 HUB_TOKEN = "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"
 huggingface_hub.login(token=HUB_TOKEN)
 
-
 os.environ["TRANSFORMERS_CACHE"] = "shared/IMR/llm2023/cache"
 
 class Model:
     generator = None
 
+    @staticmethod
     def setup():
         """model setup"""
-        print("START LOADING SETUP", file=sys.stderr)   # somehow AI Cores logs only show the error stream :)
+        print("START LOADING SETUP", file=sys.stderr)
         
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -34,7 +34,8 @@ class Model:
             device=device,
             trust_remote_code=True,
             load_in_4bit=True,
-            use_auth_token=True
+            use_auth_token=True,
+            batch_size=1  # Set the desired batch size here
         )
         
         Model.generator = lambda prompt, args: pipeline(
@@ -51,9 +52,12 @@ class Model:
 
         print("SETUP DONE", file=sys.stderr)
 
+    @staticmethod
     def predict(prompt, args):
         """model setup"""
-        return Model.generator(prompt, args) 
+        result = Model.generator(prompt, args)
+        torch.cuda.empty_cache()  # Free up GPU memory
+        return result
 
 if __name__ == "__main__":
     # for local testing
