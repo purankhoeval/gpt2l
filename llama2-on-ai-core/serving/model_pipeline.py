@@ -24,7 +24,7 @@ class Model:
 
     @staticmethod
     def setup():
-        print("START LOADING SETUP", file=sys.stderr)
+        print("GPT START LOADING SETUP", file=sys.stderr)
         
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -60,7 +60,7 @@ class Model:
             }
         )
 
-        print("SETUP DONE", file=sys.stderr)
+        print("GPT SETUP DONE", file=sys.stderr)
 
     @staticmethod
     def predict(prompt, args):
@@ -73,6 +73,7 @@ class Model:
             hidden_states = hidden_states.to(torch.float16)
 
             result[0]["hidden_states"] = hidden_states
+            print("GPT Responding", file=sys.stderr)
             return result
 
 if __name__ == "__main__":
