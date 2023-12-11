@@ -28,7 +28,7 @@ spec:
         maxReplicas: 5
         containers:
         - name: kserve-container
-          image: docker.io/purankhoeval/llama2-on-ai-core:01
+          image: docker.io/purankhoeval/gpt2-on-ai-core:01
           ports:
             - containerPort: 8080
               protocol: TCP
