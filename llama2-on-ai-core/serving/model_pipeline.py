@@ -29,11 +29,16 @@ class Model:
         
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+        # Delete the previous generator if it exists
+        if Model.generator:
+            del Model.generator
+            Model.release_memory()
+
         model_name = "meta-llama/Llama-2-7b-chat-hf"
         
         tokenizer = transformers.AutoTokenizer.from_pretrained(model_name, use_auth_token=True)
-        torch.cuda.empty_cache()
-        gc.collect()
+        Model.release_memory()
+
         pipeline = transformers.pipeline(
             "text-generation",
             model=model_name,
