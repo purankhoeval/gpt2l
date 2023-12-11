@@ -34,7 +34,7 @@ class Model:
             del Model.generator
             Model.release_memory()
 
-        model_name = "meta-llama/Llama-2-7b-chat-hf"
+        model_name = "gpt2-l"
         
         tokenizer = transformers.AutoTokenizer.from_pretrained(model_name, use_auth_token=True)
         Model.release_memory()
