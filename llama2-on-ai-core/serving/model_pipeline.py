@@ -67,6 +67,7 @@ class Model:
     def predict(prompt, args):
         with torch.no_grad():
             """model setup"""
+            Model.release_memory()
             result = Model.generator(prompt, args)
             Model.release_memory()
             return result
