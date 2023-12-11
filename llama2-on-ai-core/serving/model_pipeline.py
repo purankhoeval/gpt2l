@@ -18,6 +18,11 @@ class Model:
     generator = None
 
     @staticmethod
+    def release_memory():
+        torch.cuda.empty_cache()
+        gc.collect()
+
+    @staticmethod
     def setup():
         """model setup"""
         print("START LOADING SETUP", file=sys.stderr)
@@ -40,7 +45,6 @@ class Model:
             use_auth_token=True,
             batch_size=1  # Set the desired batch size here
         )
-        
         Model.generator = lambda prompt, args: pipeline(
             prompt,
             **{
@@ -57,11 +61,11 @@ class Model:
 
     @staticmethod
     def predict(prompt, args):
-        """model setup"""
-        result = Model.generator(prompt, args)
-        torch.cuda.empty_cache()  # Free up GPU memory
-        gc.collect()
-        return result
+        with torch.no_grad():
+            """model setup"""
+            result = Model.generator(prompt, args)
+            Model.release_memory()
+            return result
 
 if __name__ == "__main__":
     # for local testing
