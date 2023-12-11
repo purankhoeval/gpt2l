@@ -43,7 +43,6 @@ class Model:
             "text-generation",
             model=model_name,
             tokenizer=tokenizer,
-            torch_dtype=torch.bfloat16,
             device=device,
             trust_remote_code=True,
             load_in_4bit=True,
