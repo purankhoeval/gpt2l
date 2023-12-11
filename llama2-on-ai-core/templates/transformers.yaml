@@ -1,14 +1,14 @@
 apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
-  name: transformers
+  name: transformers1
   annotations:
-    scenarios.ai.sap.com/description: "transformers"
-    scenarios.ai.sap.com/name: "transformers"
-    executables.ai.sap.com/description: "transformers"
-    executables.ai.sap.com/name: "transformers"
+    scenarios.ai.sap.com/description: "transformers1"
+    scenarios.ai.sap.com/name: "transformers1"
+    executables.ai.sap.com/description: "transformers1"
+    executables.ai.sap.com/name: "transformers1"
   labels:
-    scenarios.ai.sap.com/id: "transformers"
+    scenarios.ai.sap.com/id: "transformers1"
     ai.sap.com/version: "1.0"
 spec:
   template:
