@@ -3,12 +3,12 @@ kind: ServingTemplate
 metadata:
   name: transformers
   annotations:
-    scenarios.ai.sap.com/description: "transformersgpt"
-    scenarios.ai.sap.com/name: "transformersgpt"
-    executables.ai.sap.com/description: "transformersgpt"
-    executables.ai.sap.com/name: "transformersgpt"
+    scenarios.ai.sap.com/description: "transformers"
+    scenarios.ai.sap.com/name: "transformers"
+    executables.ai.sap.com/description: "transformers"
+    executables.ai.sap.com/name: "transformers"
   labels:
-    scenarios.ai.sap.com/id: "transformersgpt"
+    scenarios.ai.sap.com/id: "transformers"
     ai.sap.com/version: "1.0"
 spec:
   template:
