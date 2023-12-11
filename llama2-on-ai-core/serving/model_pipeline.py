@@ -3,6 +3,7 @@ import sys
 import torch
 import transformers
 import huggingface_hub
+import gc
 
 transformers.utils.logging.set_verbosity_error()
 transformers.utils.logging.disable_progress_bar()
@@ -26,7 +27,8 @@ class Model:
         model_name = "meta-llama/Llama-2-7b-chat-hf"
         
         tokenizer = transformers.AutoTokenizer.from_pretrained(model_name, use_auth_token=True)
-        
+        torch.cuda.empty_cache()
+        gc.collect()
         pipeline = transformers.pipeline(
             "text-generation",
             model=model_name,
@@ -58,6 +60,7 @@ class Model:
         """model setup"""
         result = Model.generator(prompt, args)
         torch.cuda.empty_cache()  # Free up GPU memory
+        gc.collect()
         return result
 
 if __name__ == "__main__":
